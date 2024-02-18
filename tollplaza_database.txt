@@ -1,0 +1,832 @@
+CREATE DATABASE TOLLPLAZA;
+--DROP DATABASE TOLLPLAZA;
+
+CREATE TABLE GATE(
+GATEID    INT          PRIMARY KEY,
+GATENAME  VARCHAR(100) NOT NULL
+);
+--DROP TABLE GATE;
+SELECT * FROM GATE;
+INSERT INTO GATE (GATEID,GATENAME) VALUES
+(1, 'Alpha Toll Plaza'),
+(2, 'Sunset Expressway Tollgate'),
+(3, 'Golden Gate Toll Booth'),
+(4, 'City Bridge Toll Plaza'),
+(5, 'Mountain Pass Toll Station'),
+(6, 'Lakeview Toll Collection Point'),
+(7, 'Highway Junction Tollgate'),
+(8, 'Coastal Express Toll Booth'),
+(9, 'Riverfront Toll Plaza'),
+(10, 'Skyline Toll Station'),
+(11, 'Central Turnpike Tollgate'),
+(12, 'Harbor Bridge Toll Plaza'),
+(13, 'Meadowview Toll Collection Point'),
+(14, 'Parkway Expressway Tollgate'),
+(15, 'Downtown Bridge Toll Booth'),
+(16, 'Valley Pass Toll Station'),
+(17, 'Oceanfront Toll Plaza'),
+(18, 'Hillside Toll Booth'),
+(19, 'Riverside Toll Station'),
+(20, 'Metro Express Tollgate'),
+(21, 'Gateway Toll Plaza'),
+(22, 'Eastside Toll Collection Point'),
+(23, 'Westwood Turnpike Tollgate'),
+(24, 'Sunrise Bridge Toll Plaza'),
+(25, 'Countryside Toll Station'),
+(26, 'Island View Toll Plaza'),
+(27, 'Highland Toll Booth'),
+(28, 'Beachfront Toll Station'),
+(29, 'Meadowbrook Tollgate'),
+(30, 'Crossroads Toll Plaza'),
+(31, 'Riverbend Plaza'),
+(32, 'Misty Hollow'),
+(33, 'Pine Ridge Toll'),
+(34, 'Bridgewater Plaza'),
+(35, 'Sunset Gateway'),
+(36, 'Lakeview Crossing'),
+(37, 'Meadowlark Toll'),
+(38, 'Valleyview Bridge'),
+(39, 'Riverwalk Plaza'),
+(40, 'Skyline Crossing'),
+(41, 'Cascade Toll'),
+(42, 'Woodland Heights'),
+(43, 'Seaside Bridge'),
+(44, 'Sunset Vista Plaza'),
+(45, 'Prairie Toll'),
+(46, 'Mossybrook Crossing'),
+(47, 'Harborview Plaza'),
+(48, 'Mountain Pass'),
+(49, 'Golden Meadows Toll'),
+(50, 'Riverside Gateway');
+
+
+CREATE TABLE BOOTH(
+BOOTHID         INT          PRIMARY KEY,
+GATEID          INT          FOREIGN KEY REFERENCES GATE(GATEID),
+BOOTHNUMBER     INT          NOT NULL
+);
+--DROP TABLE BOOTH;
+SELECT * FROM BOOTH;
+INSERT INTO BOOTH (BOOTHID, GATEID, BOOTHNUMBER) VALUES
+(51, 1, 101),
+(52, 11, 102),
+(53, 12, 103),
+(54, 2, 201),
+(55, 14, 202),
+(56, 18, 203),
+(57, 3, 301),
+(58, 16, 302),
+(59, 19, 303),
+(60, 23, 401),
+(61, 24, 402),
+(62, 4, 403),
+(63, 5, 501),
+(64, 29, 502),
+(65, 31, 503),
+(66, 33, 601),
+(67, 34, 602),
+(68, 6, 603),
+(69, 37, 701),
+(70, 39, 702),
+(71, 40, 703),
+(72, 13, 801),
+(73, 41, 802),
+(74, 43, 803),
+(75, 9, 901),
+(76, 47, 902),
+(77, 9, 903),
+(78, 23, 1001),
+(79, 29, 1002),
+(80, 10, 1003),
+(81, 5, 1101),
+(82, 12, 1102),
+(83, 19, 1103),
+(84, 21, 1201),
+(85, 25, 1202),
+(86, 31, 1203),
+(87, 36, 1301),
+(88, 41, 1302),
+(89, 45, 1303),
+(90, 9, 1401),
+(91, 15, 1402),
+(92, 22, 1403),
+(93, 28, 1501),
+(94, 35, 1502),
+(95, 42, 1503),
+(96, 48, 1601),
+(97, 50, 1602),
+(98, 6, 1603),
+(99, 13, 1701),
+(100, 16, 1702);
+
+
+CREATE TABLE VEHICLES(
+VEHICLEID       INT          PRIMARY KEY,
+LICENSENO       VARCHAR(100) UNIQUE,
+VEHICLETYPE     VARCHAR(100) NULL
+);
+--DROP TABLE VEHICLES;
+SELECT * FROM VEHICLES;
+INSERT INTO VEHICLES (VEHICLEID, LICENSENO, VEHICLETYPE) VALUES
+(01, 'ABC123', 'Car'),
+(02, 'DEF456', 'Motorcycle'),
+(03, 'GHI789', 'Truck'),
+(04, 'JKL012', 'SUV'),
+(05, 'MNO345', 'Van'),
+(06, 'PQR678', 'Car'),
+(07, 'STU901', 'Motorcycle'),
+(08, 'VWX234', 'Truck'),
+(09, 'YZA567', 'SUV'),
+(010, 'BCD890', 'Van'),
+(011, 'EFG123', 'Car'),
+(012, 'HIJ456', 'Motorcycle'),
+(013, 'KLM789', 'Truck'),
+(014, 'NOP012', 'SUV'),
+(015, 'QRS345', 'Van'),
+(016, 'TUV678', 'Car'),
+(017, 'WXY901', 'Motorcycle'),
+(018, 'ZAB234', 'Truck'),
+(019, 'CDE567', 'SUV'),
+(020, 'FGH890', 'Van'),
+(021, 'IJK123', 'Car'),
+(022, 'LMN456', 'Motorcycle'),
+(023, 'OPQ789', 'Truck'),
+(024, 'RST012', 'SUV'),
+(025, 'UVW345', 'Van'),
+(026, 'XYZ678', 'Car'),
+(027, 'ABC901', 'Motorcycle'),
+(028, 'DEF234', 'Truck'),
+(029, 'GHI567', 'SUV'),
+(030, 'JKL890', 'Van'),
+(031, 'MNO123', 'Car'),
+(032, 'PQR456', 'Motorcycle'),
+(033, 'STU789', 'Truck'),
+(034, 'VWX012', 'SUV'),
+(035, 'YZA345', 'Van'),
+(036, 'BCD678', 'Car'),
+(037, 'EFG901', 'Motorcycle'),
+(038, 'HIJ234', 'Truck'),
+(039, 'KLM567', 'SUV'),
+(040, 'NOP890', 'Van'),
+(041, 'QRS123', 'Car'),
+(042, 'TUV456', 'Motorcycle'),
+(043, 'WXY789', 'Truck'),
+(044, 'ZAB012', 'SUV'),
+(045, 'CDE345', 'Van'),
+(046, 'FGH678', 'Car'),
+(047, 'IJK901', 'Motorcycle'),
+(048, 'LMN234', 'Truck'),
+(049, 'OPQ567', 'SUV'),
+(050, 'RST890', 'Van');
+
+
+
+CREATE TABLE CUSTOMERS(
+CUSTOMERID     INT         PRIMARY KEY,
+FIRSTNAME     VARCHAR(100) NOT NULL,
+LASTNAME      VARCHAR(100) NOT NULL,
+CADDRESS      VARCHAR(100) NULL,
+CCONTACTNO     BIGINT         NULL
+);
+--DROP TABLE CUSTOMERS;
+SELECT * FROM CUSTOMERS;
+INSERT INTO CUSTOMERS (CUSTOMERID, FIRSTNAME, LASTNAME, CADDRESS, CCONTACTNO) VALUES
+(204, 'John', 'Doe', '123 Main St', 1234567890),
+(205, 'Jane', 'Smith', '456 Elm St', 9876543210),
+(206, 'David', 'Johnson', '789 Oak St', 5551234567),
+(207, 'Sarah', 'Williams', '321 Pine St', 7778889999),
+(208, 'Michael', 'Brown', '654 Maple St', 9998887777),
+(209, 'Emily', 'Jones', '987 Cherry St', 1112223333),
+(210, 'Daniel', 'Davis', '234 Cedar St', 4445556666),
+(211, 'Jessica', 'Wilson', '567 Walnut St', 2223334444),
+(212, 'Andrew', 'Miller', '890 Birch St', 6665554444),
+(213, 'Olivia', 'Taylor', '432 Spruce St', 8889990000),
+(214, 'Matthew', 'Anderson', '765 Fir St', 3334445555),
+(215, 'Sophia', 'Martinez', '098 Pineapple St', 6667778888),
+(216, 'Christopher', 'Hernandez', '321 Coconut St', 2223334444),
+(217, 'Ava', 'Lopez', '654 Mango St', 5556667777),
+(218, 'Ryan', 'Gonzalez', '987 Papaya St', 7778889999),
+(219, 'Emma', 'Perez', '234 Banana St', 9998887777),
+(220, 'Ethan', 'Robinson', '567 Orange St', 1112223333),
+(221, 'Isabella', 'Clark', '890 Lime St', 4445556666),
+(222, 'Joshua', 'Hall', '432 Lemon St', 2223334444),
+(223, 'Mia', 'Walker', '765 Grape St', 6665554444),
+(224, 'Alexander', 'Young', '098 Apple St', 8889990000),
+(225, 'Charlotte', 'Lee', '321 Pear St', 3334445555),
+(226, 'William', 'Gomez', '654 Plum St', 6667778888),
+(227, 'Amelia', 'Kelly', '987 Cherry St', 5556667777),
+(228, 'James', 'Hill', '234 Mango St', 7778889999),
+(229, 'Sofia', 'Cook', '567 Papaya St', 9998887777),
+(230, 'Benjamin', 'Sanchez', '890 Coconut St', 1112223333),
+(231, 'Abigail', 'Morales', '432 Pineapple St', 4445556666),
+(232, 'Daniel', 'Rogers', '765 Banana St', 2223334444),
+(233, 'Victoria', 'Reed', '098 Orange St', 6665554444);
+
+
+CREATE TABLE TRANSCATIONS(
+TRANSCATIONID  INT          PRIMARY KEY,
+BOOTHID        INT          FOREIGN KEY REFERENCES BOOTH(BOOTHID),
+VEHICLEID      INT          FOREIGN KEY REFERENCES VEHICLES(VEHICLEID),
+CUSTOMERID     INT          FOREIGN KEY REFERENCES CUSTOMERS(CUSTOMERID),
+DATEANDTIME    DATETIME     NOT NULL,
+PRICE          DECIMAL(5,2) NOT NULL
+);
+--DROP TABLE TRANSCATIONS;
+SELECT * FROM TRANSCATIONS;
+INSERT INTO TRANSCATIONS (TRANSCATIONID, BOOTHID, VEHICLEID, CUSTOMERID, DATEANDTIME, PRICE) VALUES
+(104, 51, 011, 204, '2023-01-01 09:00:00', 110.50),
+(105, 52, 012, 205, '2023-01-02 10:30:00', 108.75),
+(106, 53, 013, 206, '2023-01-03 14:45:00', 115.25),
+(107, 54, 014, 207, '2023-01-04 12:15:00', 209.50),
+(108, 55, 015, 208, '2023-01-05 16:20:00', 112.80),
+(109, 56, 016, 209, '2023-01-06 11:10:00', 17.90),
+(110, 57, 017, 210, '2023-01-07 13:30:00', 113.50),
+(111, 58, 018, 211, '2023-01-08 15:40:00', 111.25),
+(112, 59, 019, 212, '2023-01-09 09:50:00', 116.75),
+(113, 60, 020, 213, '2023-01-10 17:00:00', 208.40),
+(114, 61, 021, 214, '2023-01-11 14:15:00', 109.80),
+(115, 62, 022, 215, '2023-01-12 10:25:00', 114.20),
+(116, 63, 023, 216, '2023-01-13 12:35:00', 110.90),
+(117, 64, 024, 217, '2023-01-14 16:50:00', 111.75),
+(118, 65, 025, 218, '2023-01-15 13:05:00', 113.45),
+(119, 66, 026, 219, '2023-01-16 09:15:00', 115.60),
+(120, 67, 027, 220, '2023-01-17 15:25:00', 112.30),
+(121, 68, 028, 221, '2023-01-18 11:35:00', 209.95),
+(122, 69, 029, 222, '2023-01-19 13:45:00', 208.70),
+(123, 70, 030, 223, '2023-01-20 10:55:00', 214.80),
+(124, 71, 031, 224, '2023-01-21 16:00:00', 209.10),
+(125, 72, 032, 225, '2023-01-22 12:10:00', 211.40),
+(126, 73, 033, 226, '2023-01-23 14:20:00', 212.90),
+(127, 74, 034, 227, '2023-01-24 09:30:00', 210.25),
+(128, 75, 035, 228, '2023-01-25 11:40:00', 215.75),
+(129, 76, 036, 229, '2023-01-26 15:50:00', 108.60),
+(130, 77, 037, 230, '2023-01-27 10:00:00', 113.90),
+(131, 78, 038, 231, '2023-01-28 12:10:00', 110.80),
+(132, 79, 039, 232, '2023-01-29 14:20:00', 209.50),
+(133, 80, 040, 233, '2023-01-30 16:30:00', 111.65);
+
+
+CREATE TABLE EMPLOYEES(
+EMPLOYEEID    INT           PRIMARY KEY,
+FIRSTNAME     VARCHAR(100)  NOT NULL,
+LASTNAME      VARCHAR(100)  NOT NULL,
+EADDRESS      VARCHAR(100)  NULL,
+ECONTACTNO    BIGINT           NULL,
+EDESIGNATION  VARCHAR(100)  NOT NULL
+);
+--DROP TABLE EMPLOYEES;
+SELECT * FROM EMPLOYEES;
+INSERT INTO EMPLOYEES (EMPLOYEEID, FIRSTNAME, LASTNAME, EADDRESS, ECONTACTNO, EDESIGNATION) VALUES
+(304, 'John', 'Doe', '123 Main St', 1234567890, 'Manager'),
+(305, 'Jane', 'Smith', '456 Elm St', 9876543210, 'Supervisor'),
+(306, 'David', 'Johnson', '789 Oak St', 5551234567, 'Operator'),
+(307, 'Sarah', 'Williams', '321 Pine St', 7778889999, 'Operator'),
+(308, 'Michael', 'Brown', '654 Maple St', 9998887777, 'Supervisor'),
+(309, 'Emily', 'Jones', '987 Cherry St', 1112223333, 'Operator'),
+(310, 'Daniel', 'Davis', '234 Cedar St', 4445556666, 'Operator'),
+(311, 'Jessica', 'Wilson', '567 Walnut St', 2223334444, 'Supervisor'),
+(312, 'Andrew', 'Miller', '890 Birch St', 6665554444, 'Operator'),
+(313, 'Olivia', 'Taylor', '432 Spruce St', 8889990000, 'Operator'),
+(314, 'Matthew', 'Anderson', '765 Fir St', 3334445555, 'Supervisor'),
+(315, 'Sophia', 'Martinez', '098 Pineapple St', 6667778888, 'Operator'),
+(316, 'Christopher', 'Hernandez', '321 Coconut St', 2223334444, 'Operator'),
+(317, 'Ava', 'Lopez', '654 Mango St', 5556667777, 'Operator'),
+(318, 'Ryan', 'Gonzalez', '987 Papaya St', 7778889999, 'Supervisor'),
+(319, 'Emma', 'Perez', '234 Banana St', 9998887777, 'Operator'),
+(320, 'Ethan', 'Robinson', '567 Orange St', 1112223333, 'Operator'),
+(321, 'Isabella', 'Clark', '890 Lime St', 4445556666, 'Supervisor'),
+(322, 'Joshua', 'Hall', '432 Lemon St', 2223334444, 'Operator'),
+(323, 'Mia', 'Walker', '765 Grape St', 6665554444, 'Operator'),
+(324, 'Alexander', 'Young', '098 Apple St', 8889990000, 'Supervisor'),
+(325, 'Charlotte', 'Lee', '321 Pear St', 3334445555, 'Operator'),
+(326, 'William', 'Gomez', '654 Plum St', 6667778888, 'Operator'),
+(327, 'Amelia', 'Kelly', '987 Cherry St', 5556667777, 'Supervisor'),
+(328, 'James', 'Hill', '234 Mango St', 7778889999, 'Operator'),
+(329, 'Sofia', 'Cook', '567 Papaya St', 9998887777, 'Operator'),
+(330, 'Benjamin', 'Sanchez', '890 Coconut St', 1112223333, 'Supervisor'),
+(331, 'Abigail', 'Morales', '432 Pineapple St', 4445556666, 'Operator'),
+(332, 'Daniel', 'Rogers', '765 Banana St', 2223334444, 'Operator'),
+(333, 'Emily', 'Perry', '098 Orange St', 6665554444, 'Operator');
+
+
+CREATE TABLE SHIFTS(
+SHIFTID       INT          PRIMARY KEY,
+EMPLOYEEID    INT          FOREIGN KEY REFERENCES EMPLOYEES(EMPLOYEEID),
+STARTTIME     TIME         NOT NULL,
+ENDTIME       TIME         NOT NULL,
+WORKINGSHIFT VARCHAR(100)  NOT NULL,CHECK(WORKINGSHIFT='MORNING' or WORKINGSHIFT='AFTERNOON' or WORKINGSHIFT='NIGHT'),
+);
+--DROP TABLE SHIFTS;
+SELECT * FROM SHIFTS;
+INSERT INTO SHIFTS (SHIFTID, EMPLOYEEID, STARTTIME, ENDTIME, WORKINGSHIFT) VALUES
+(1, 304, '08:00:00', '16:00:00', 'MORNING'),
+(2, 305, '12:00:00', '20:00:00', 'AFTERNOON'),
+(3, 306, '16:00:00', '00:00:00', 'NIGHT'),
+(4, 307, '20:00:00', '04:00:00', 'NIGHT'),
+(5, 308, '09:00:00', '17:00:00', 'MORNING'),
+(6, 309, '13:00:00', '21:00:00', 'AFTERNOON'),
+(7, 310, '17:00:00', '01:00:00', 'NIGHT'),
+(8, 311, '21:00:00', '05:00:00', 'NIGHT'),
+(9, 312, '10:00:00', '18:00:00', 'MORNING'),
+(10, 313, '14:00:00', '22:00:00', 'AFTERNOON'),
+(11, 314, '18:00:00', '02:00:00', 'NIGHT'),
+(12, 315, '22:00:00', '06:00:00', 'NIGHT'),
+(13, 316, '08:00:00', '16:00:00', 'MORNING'),
+(14, 317, '12:00:00', '20:00:00', 'AFTERNOON'),
+(15, 318, '16:00:00', '00:00:00', 'NIGHT'),
+(16, 319, '20:00:00', '04:00:00', 'NIGHT'),
+(17, 320, '09:00:00', '17:00:00', 'MORNING'),
+(18, 321, '13:00:00', '21:00:00', 'AFTERNOON'),
+(19, 322, '17:00:00', '01:00:00', 'NIGHT'),
+(20, 323, '21:00:00', '05:00:00', 'NIGHT'),
+(21, 324, '10:00:00', '18:00:00', 'MORNING'),
+(22, 325, '14:00:00', '22:00:00', 'AFTERNOON'),
+(23, 326, '18:00:00', '02:00:00', 'NIGHT'),
+(24, 327, '22:00:00', '06:00:00', 'NIGHT'),
+(25, 328, '08:00:00', '16:00:00', 'MORNING'),
+(26, 329, '12:00:00', '20:00:00', 'AFTERNOON'),
+(27, 330, '16:00:00', '00:00:00', 'NIGHT'),
+(28, 331, '20:00:00', '04:00:00', 'NIGHT'),
+(29, 332, '09:00:00', '17:00:00', 'MORNING'),
+(30, 333, '13:00:00', '21:00:00', 'AFTERNOON');
+
+
+CREATE TABLE VEHICLEOWNER(
+OWNERID      INT         PRIMARY KEY,
+FIRSTNAME   VARCHAR(100)  NULL,
+LASTNAME    VARCHAR(100)  NULL,
+OADDRESS    VARCHAR(100) NULL,
+OCONTACTNO   BIGINT         NULL
+);
+--DROP TABLE VEHICLEOWNER;
+SELECT * FROM VEHICLEOWNER;
+INSERT INTO VEHICLEOWNER (OWNERID, FIRSTNAME, LASTNAME, OADDRESS, OCONTACTNO) VALUES
+(404, 'Ethan', 'Wilson', '123 Main St', 1234567890),
+(405, 'Olivia', 'Smith', '456 Elm St', 9876543210),
+(406, 'Alexander', 'Johnson', '789 Oak St', 5551234567),
+(407, 'Sofia', 'Brown', '321 Pine St', 7778889999),
+(408, 'Daniel', 'Davis', '654 Maple St', 9998887777),
+(409, 'Ava', 'Miller', '987 Cherry St', 1112223333),
+(410, 'Matthew', 'Wilson', '234 Cedar St', 4445556666),
+(411, 'Emma', 'Anderson', '567 Walnut St', 2223334444),
+(412, 'William', 'Taylor', '890 Birch St', 6665554444),
+(413, 'Charlotte', 'Thomas', '432 Spruce St', 8889990000),
+(414, 'James', 'Lee', '765 Fir St', 3334445555),
+(415, 'Sophia', 'Harris', '098 Pineapple St', 6667778888),
+(416, 'Benjamin', 'Clark', '321 Coconut St', 2223334444),
+(417, 'Mia', 'Lewis', '654 Mango St', 5556667777),
+(418, 'Jacob', 'King', '987 Papaya St', 7778889999),
+(419, 'Emily', 'Turner', '234 Banana St', 9998887777),
+(420, 'Michael', 'Baker', '567 Orange St', 1112223333),
+(421, 'Ella', 'Hill', '890 Lime St', 4445556666),
+(422, 'Logan', 'Adams', '432 Lemon St', 2223334444),
+(423, 'Harper', 'Nelson', '765 Grape St', 6665554444),
+(424, 'Aiden', 'Coleman', '098 Apple St', 8889990000),
+(425, 'Abigail', 'Rogers', '321 Pear St', 3334445555),
+(426, 'Jackson', 'Moore', '654 Plum St', 6667778888),
+(427, 'Evelyn', 'Butler', '987 Cherry St', 5556667777),
+(428, 'Daniel', 'Turner', '234 Mango St', 7778889999),
+(429, 'Grace', 'Foster', '567 Papaya St', 9998887777),
+(430, 'Carter', 'Howard', '890 Coconut St', 1112223333),
+(431, 'Lily', 'Bell', '432 Pineapple St', 4445556666),
+(432, 'Sebastian', 'Mitchell', '765 Banana St', 2223334444),
+(433, 'Victoria', 'Parker', '098 Orange St', 6665554444);
+
+
+CREATE TABLE VEHICLEREG(
+REGID        INT     PRIMARY KEY,
+VEHICLEID    INT     FOREIGN KEY REFERENCES VEHICLES(VEHICLEID),
+OWNERID      INT     FOREIGN KEY REFERENCES VEHICLEOWNER(OWNERID),
+REGDATE      DATE    NOT NULL
+);
+--DROP TABLE VEHICLEREG;
+SELECT * FROM VEHICLEREG;
+INSERT INTO VEHICLEREG (REGID, VEHICLEID, OWNERID, REGDATE) VALUES
+(504, 010, 405, '2022-01-01'),
+(505, 011, 406, '2022-01-02'),
+(506, 012, 407, '2022-01-03'),
+(507, 013, 404, '2022-01-04'),
+(508, 014, 408, '2022-01-05'),
+(509, 015, 409, '2022-01-06'),
+(510, 016, 410, '2022-01-07'),
+(511, 017, 411, '2022-01-08'),
+(512, 018, 412, '2022-01-09'),
+(513, 019, 413, '2022-01-10'),
+(514, 020, 414, '2022-01-11'),
+(515, 021, 415, '2022-01-12'),
+(516, 022, 416, '2022-01-13'),
+(517, 023, 417, '2022-01-14'),
+(518, 024, 418, '2022-01-15'),
+(519, 025, 419, '2022-01-16'),
+(520, 026, 420, '2022-01-17'),
+(521, 027, 421, '2022-01-18'),
+(522, 028, 422, '2022-01-19'),
+(523, 029, 423, '2022-01-20'),
+(524, 030, 424, '2022-01-21'),
+(525, 031, 425, '2022-01-22'),
+(526, 032, 426, '2022-01-23'),
+(527, 033, 427, '2022-01-24'),
+(528, 034, 428, '2022-01-25'),
+(529, 040, 429, '2022-01-26'),
+(530, 041, 430, '2022-01-27'),
+(531, 043, 431, '2022-01-28'),
+(532, 047, 432, '2022-01-29'),
+(533, 050, 433, '2022-01-30');
+
+CREATE TABLE PAYMENTS( 
+PAYMENTID     INT    PRIMARY KEY,
+TRANSCATIONID INT    FOREIGN KEY REFERENCES TRANSCATIONS(TRANSCATIONID),
+PAYMENTMETHOD VARCHAR(30)    NOT NULL
+);
+SELECT * FROM PAYMENTS;
+--DROP TABLE PAYMENTS;
+INSERT INTO PAYMENTS (PAYMENTID, TRANSCATIONID, PAYMENTMETHOD)VALUES
+  (804, 104, 'PHONEPAY'),
+  (805, 105, 'GOOGLEPAY'),
+  (806, 106, 'CREDITCARD'),
+  (807, 107, 'DEBITCARD'),
+  (808, 108, 'PAYTM'),
+  (809, 109, 'PAYPAL'),
+  (810, 110, 'GIFTCARD'),
+  (811, 111, 'PHONEPAY'),
+  (812, 112, 'GOOGLEPAY'),
+  (813, 113, 'CREDITCARD'),
+  (814, 114, 'DEBITCARD'),
+  (815, 115, 'PAYTM'),
+  (816, 116, 'PAYPAL'),
+  (817, 117, 'GIFTCARD'),
+  (818, 118, 'PHONEPAY'),
+  (819, 119, 'GOOGLEPAY'),
+  (820, 120, 'CREDITCARD'),
+  (821, 121, 'DEBITCARD'),
+  (822, 122, 'PAYTM'),
+  (823, 123, 'PAYPAL'),
+  (824, 124, 'GIFTCARD'),
+  (825, 125, 'PHONEPAY'),
+  (826, 126, 'GOOGLEPAY'),
+  (827, 127, 'CREDITCARD'),
+  (828, 128, 'DEBITCARD'),
+  (829, 129, 'PAYTM'),
+  (830, 130, 'PAYPAL'),
+  (831, 131, 'GIFTCARD'),
+  (832, 132, 'PHONEPAY'),
+  (833, 133, 'GOOGLEPAY');
+
+
+CREATE TABLE VIOLATION(
+VIOLATIONID    INT          PRIMARY KEY,
+VEHICLEID      INT          FOREIGN KEY REFERENCES VEHICLES(VEHICLEID),
+VIOLATIONDATE  DATE         NOT NULL,
+VIODESCRIPTION VARCHAR(200) NULL
+);
+--DROP TABLE VIOLATION;
+SELECT * FROM VIOLATION;
+INSERT INTO VIOLATION (VIOLATIONID, VEHICLEID, VIOLATIONDATE, VIODESCRIPTION) VALUES
+(633, 010, '2022-01-01', 'Speeding violation'),
+(632, 011, '2022-01-02', 'Parking violation'),
+(631, 012, '2022-01-03', 'Red light violation'),
+(604, 013, '2022-01-04', 'Seatbelt violation'),
+(605, 014, '2022-01-05', 'Distracted driving violation'),
+(606, 015, '2022-01-06', 'Expired registration violation'),
+(607, 016, '2022-01-07', 'Illegal u-turn violation'),
+(608, 017, '2022-01-08', 'Driving without a license violation'),
+(609, 020, '2022-01-09', 'Reckless driving violation'),
+(610, 022, '2022-01-10', 'Improper lane change violation'),
+(611, 024, '2022-01-11', 'Driving under the influence violation'),
+(612, 025, '2022-01-12', 'Tailgating violation'),
+(613, 026, '2022-01-13', 'Running a stop sign violation'),
+(614, 027, '2022-01-14', 'Wrong-way driving violation'),
+(615, 028, '2022-01-15', 'Illegal parking violation'),
+(616, 031, '2022-01-16', 'Expired drivers license violation'),
+(617, 032, '2022-01-17', 'Failure to yield violation'),
+(618, 033, '2022-01-18', 'Speeding violation'),
+(619, 035, '2022-01-19', 'Texting while driving violation'),
+(620, 037, '2022-01-20', 'Illegal passing violation'),
+(621, 040, '2022-01-21', 'Failure to signal violation'),
+(622, 041, '2022-01-22', 'Driving without insurance violation'),
+(623, 042, '2022-01-23', 'Improper turn violation'),
+(624, 043, '2022-01-24', 'Vehicle equipment violation'),
+(625, 044, '2022-01-25', 'Expired inspection violation'),
+(626, 045, '2022-01-26', 'Speeding violation'),
+(627, 046, '2022-01-27', 'Reckless driving violation'),
+(628, 047, '2022-01-28', 'Driving with a suspended license violation'),
+(629, 049, '2022-01-29', 'Red light violation'),
+(630, 050, '2022-01-30', 'Seatbelt violation');
+
+
+CREATE TABLE TOLLVIOLATIONFINE
+(
+FINEID        INT           PRIMARY KEY,
+VIOLATIONID   INT           FOREIGN KEY REFERENCES VIOLATION(VIOLATIONID),
+FINEAMOUNT    DECIMAL(6,2)  NOT NULL,
+PAIDSTATUS    VARCHAR(30)   CHECK(PAIDSTATUS='PAID' OR PAIDSTATUS='UNPAID') NULL
+);
+--DROP TABLE TOLLVIOLATIONFINE;
+SELECT * FROM TOLLVIOLATIONFINE;
+INSERT INTO TOLLVIOLATIONFINE (FINEID, VIOLATIONID, FINEAMOUNT, PAIDSTATUS)VALUES
+(804, 604, 50.00, 'PAID'),
+    (805, 605, 75.00, 'UNPAID'),
+    (806, 606, 100.00, 'PAID'),
+    (807, 607, 120.00, 'UNPAID'),
+    (808, 608, 90.00, 'PAID'),
+    (809, 609, 80.00, 'UNPAID'),
+    (810, 610, 110.00, 'PAID'),
+    (811, 611, 70.00, 'UNPAID'),
+    (812, 612, 95.00, 'PAID'),
+    (813, 613, 60.00, 'UNPAID'),
+    (814, 614, 85.00, 'PAID'),
+    (815, 615, 95.00, 'UNPAID'),
+    (816, 616, 70.00, 'PAID'),
+    (817, 617, 120.00, 'UNPAID'),
+    (818, 618, 110.00, 'PAID'),
+    (819, 619, 80.00, 'UNPAID'),
+    (820, 620, 90.00, 'PAID'),
+    (821, 621, 100.00, 'UNPAID'),
+    (822, 622, 60.00, 'PAID'),
+    (823, 623, 95.00, 'UNPAID'),
+    (824, 624, 85.00, 'PAID'),
+    (825, 625, 75.00, 'UNPAID'),
+    (826, 626, 70.00, 'PAID'),
+    (827, 627, 110.00, 'UNPAID'),
+    (828, 628, 120.00, 'PAID'),
+    (829, 629, 80.00, 'UNPAID'),
+    (830, 630, 90.00, 'PAID'),
+    (831, 631, 100.00, 'UNPAID'),
+    (832, 632, 85.00, 'PAID'),
+    (833, 633, 60.00, 'UNPAID');
+
+
+
+
+CREATE TABLE REPORTS(
+REPORTID       INT          PRIMARY KEY,
+GATEID         INT          FOREIGN KEY REFERENCES GATE(GATEID),
+REPORTDATE     DATE         NOT NULL,
+REPDESCRIPTION VARCHAR(200) NULL
+);
+--DROP TABLE REPORTS;
+SELECT * FROM REPORTS;
+INSERT INTO REPORTS (REPORTID, GATEID, REPORTDATE, REPDESCRIPTION) VALUES
+(704, 1, '2022-01-01', 'Maintenance work report'),
+(705, 2, '2022-01-02', 'Traffic congestion report'),
+(706, 3, '2022-01-03', 'Accident report'),
+(707, 4, '2022-01-04', 'Equipment malfunction report'),
+(708, 5, '2022-01-05', 'Weather condition report'),
+(709, 6, '2022-01-06', 'Security incident report'),
+(710, 7, '2022-01-07', 'Road closure report'),
+(711, 8, '2022-01-08', 'Staff shortage report'),
+(712, 9, '2022-01-09', 'Power outage report'),
+(713, 10, '2022-01-10', 'Vehicle breakdown report'),
+(714, 11, '2022-01-11', 'Suspicious activity report'),
+(715, 12, '2022-01-12', 'Road surface damage report'),
+(716, 13, '2022-01-13', 'Signage damage report'),
+(717, 14, '2022-01-14', 'Flood alert report'),
+(718, 15, '2022-01-15', 'Wildlife crossing report'),
+(719, 16, '2022-01-16', 'Construction work report'),
+(720, 17, '2022-01-17', 'Debris on road report'),
+(721, 18, '2022-01-18', 'Traffic signal malfunction report'),
+(722, 19, '2022-01-19', 'Emergency situation report'),
+(723, 20, '2022-01-20', 'Vehicle collision report'),
+(724, 21, '2022-01-21', 'Road markings fade report'),
+(725, 22, '2022-01-22', 'Pedestrian safety concern report'),
+(726, 23, '2022-01-23', 'Vehicle overload report'),
+(727, 24, '2022-01-24', 'Noise complaint report'),
+(728, 25, '2022-01-25', 'Vehicle speed violation report'),
+(729, 26, '2022-01-26', 'Toll collection issue report'),
+(730, 27, '2022-01-27', 'Emergency services access report'),
+(731, 28, '2022-01-28', 'Maintenance equipment stolen report'),
+(732, 29, '2022-01-29', 'Roadside assistance request report'),
+(733, 30, '2022-01-30', 'Vehicle fire incident report');
+
+SELECT * FROM TRANSCATIONS
+INNER JOIN BOOTH ON TRANSCATIONS.BOOTHID = BOOTH.BOOTHID;
+
+SELECT * FROM GATE
+LEFT JOIN BOOTH ON GATE.GATEID = BOOTH.GATEID;
+
+SELECT * FROM CUSTOMERS AS c1
+INNER JOIN CUSTOMERS AS c2 ON c1.CUSTOMERID = c2.CUSTOMERID;
+
+SELECT * FROM GATE
+FULL OUTER JOIN BOOTH ON GATE.GATEID = BOOTH.GATEID
+WHERE GATE.GATEID IS NULL OR BOOTH.GATEID IS NULL;
+
+--UPDATE query to change the vehicle type for a specific vehicle:
+UPDATE VEHICLES
+SET VEHICLETYPE = 'Sedan'
+WHERE VEHICLEID = 1;
+
+--ALTER TABLE query to add a new column to the TRANSACTIONS table:
+ALTER TABLE TRANSCATIONS
+ADD DISCOUNT DECIMAL(5, 2) NULL;
+
+--query to get the total number of transactions per vehicle type:
+SELECT VEHICLETYPE, COUNT(*) AS TotalTransactions
+FROM TRANSCATIONS T
+INNER JOIN VEHICLES V ON T.VEHICLEID = V.VEHICLEID
+GROUP BY VEHICLETYPE;
+
+--ORDER BY query to retrieve transactions in descending order of price:
+SELECT * FROM TRANSCATIONS
+ORDER BY PRICE DESC;
+
+--Select gates along with the corresponding booth numbers:
+SELECT G.GATEID, G.GATENAME, B.BOOTHNUMBER
+FROM GATE G
+JOIN BOOTH B ON G.GATEID = B.GATEID;
+
+--Select the total number of transactions made at each booth:
+SELECT B.BOOTHNUMBER, COUNT(*) AS TOTAL_TRANSACTIONS
+FROM BOOTH B
+JOIN TRANSCATIONS T ON B.BOOTHID = T.BOOTHID
+GROUP BY B.BOOTHNUMBER;
+
+--Select the average price of transactions made by each vehicle type:
+SELECT V.VEHICLETYPE, AVG(T.PRICE) AS AVERAGE_PRICE
+FROM VEHICLES V
+JOIN TRANSCATIONS T ON V.VEHICLEID = T.VEHICLEID
+GROUP BY V.VEHICLETYPE;
+
+--Update the address of a customer with a specific ID of 204:
+UPDATE CUSTOMERS
+SET CADDRESS = 'Gachi Bowli'
+WHERE CUSTOMERID = 204;
+
+--Insert a new gate into the GATE table:
+INSERT INTO GATE (GATEID, GATENAME)
+VALUES (51, 'PARANORMI Gate');
+
+
+--TO Get the license numbers of vehicles that have made transactions:
+SELECT LICENSENO
+FROM VEHICLES
+WHERE VEHICLEID IN (SELECT VEHICLEID FROM TRANSCATIONS);
+
+--Get the total number of transactions made at each gate:
+SELECT G.GATENAME, COUNT(*) AS TRANSACTION_COUNT
+FROM GATE G
+INNER JOIN BOOTH B ON G.GATEID = B.GATEID
+INNER JOIN TRANSCATIONS T ON B.BOOTHID = T.BOOTHID
+GROUP BY G.GATENAME;
+
+--Get the first and last name of customers who made transactions on a specific date:
+SELECT C.FIRSTNAME, C.LASTNAME
+FROM CUSTOMERS C
+WHERE C.CUSTOMERID IN (SELECT CUSTOMERID FROM TRANSCATIONS WHERE CAST(DATEANDTIME AS DATE) = '2023-01-10');
+
+--Get the average price of transactions made by customers with a specific contact number:
+SELECT AVG(T.PRICE) AS AVERAGE_PRICE
+FROM TRANSCATIONS T
+WHERE T.CUSTOMERID IN (SELECT CUSTOMERID FROM CUSTOMERS WHERE CCONTACTNO = 5551234567);
+
+--Get the license numbers of vehicles that made transactions at a specific booth:
+SELECT V.LICENSENO
+FROM VEHICLES V
+WHERE V.VEHICLEID IN (SELECT VEHICLEID FROM TRANSCATIONS WHERE BOOTHID = 54);
+
+--Retrieve the total number of booths for each gate:
+SELECT G.GATENAME, (
+    SELECT COUNT(*)
+    FROM BOOTH B
+    WHERE B.GATEID = G.GATEID
+) AS NUM_BOOTH
+FROM GATE G;
+
+--Retrieve the average price of transactions for each vehicle type:
+SELECT V.VEHICLETYPE, (
+    SELECT AVG(T.PRICE)
+    FROM TRANSCATIONS T
+    WHERE T.VEHICLEID = V.VEHICLEID
+) AS AVG_PRICE
+FROM VEHICLES V;
+
+
+--Retrieve the customer details who made the most expensive transaction:
+SELECT C.FIRSTNAME, C.LASTNAME, (
+    SELECT MAX(T.PRICE)
+    FROM TRANSCATIONS T
+    WHERE T.CUSTOMERID = C.CUSTOMERID
+) AS MAX_PRICE
+FROM CUSTOMERS C
+ORDER BY MAX_PRICE DESC;
+
+--Retrieve the total number of transactions for each gate:
+SELECT G.GATENAME, (
+    SELECT COUNT(*)
+    FROM TRANSCATIONS T
+    INNER JOIN BOOTH B ON T.BOOTHID = B.BOOTHID
+    WHERE B.GATEID = G.GATEID
+) AS NUM_TRANSACTIONS
+FROM GATE G;
+
+--Retrieve the details of customers who have made transactions at the "Alpha Toll Plaza":
+SELECT *FROM CUSTOMERS
+WHERE CUSTOMERID IN (
+    SELECT CUSTOMERID
+    FROM TRANSCATIONS
+    WHERE BOOTHID IN (
+        SELECT BOOTHID
+        FROM BOOTH
+        WHERE GATEID = (
+            SELECT GATEID
+            FROM GATE
+            WHERE GATENAME = 'Alpha Toll Plaza'
+        )
+    )
+);
+
+
+--Retrieve the license numbers of vehicles that 
+--have made transactions with a price greater than 200:
+SELECT LICENSENO
+FROM VEHICLES
+WHERE VEHICLEID IN (
+    SELECT VEHICLEID
+    FROM TRANSCATIONS
+    WHERE PRICE > 200
+);
+
+--Retrieve the total number of transactions made by each vehicle type:
+SELECT VEHICLETYPE, COUNT(*) AS TotalTransactions
+FROM VEHICLES
+INNER JOIN TRANSCATIONS ON VEHICLES.VEHICLEID = TRANSCATIONS.VEHICLEID
+GROUP BY VEHICLETYPE;
+
+--Retrieve the names of gates along with the average price of transactions made at each gate:
+SELECT G.GATENAME, AVG(T.PRICE) AS AveragePrice
+FROM GATE G
+INNER JOIN BOOTH B ON G.GATEID = B.GATEID
+INNER JOIN TRANSCATIONS T ON B.BOOTHID = T.BOOTHID
+GROUP BY G.GATENAME;
+
+SELECT C.CUSTOMERID, C.FIRSTNAME, C.LASTNAME
+FROM CUSTOMERS C
+WHERE NOT EXISTS (
+  SELECT G.GATEID
+  FROM GATE G
+  WHERE NOT EXISTS (
+    SELECT B.BOOTHID
+    FROM BOOTH B
+    WHERE B.GATEID = G.GATEID
+    AND EXISTS (
+      SELECT T.TRANSCATIONID
+      FROM TRANSCATIONS T
+      WHERE T.BOOTHID = B.BOOTHID
+      AND T.CUSTOMERID = C.CUSTOMERID
+    )
+  )
+);
+
+SELECT v.VEHICLEID, v.LICENSENO, v.VEHICLETYPE
+FROM VEHICLES v
+WHERE NOT EXISTS (
+  SELECT b.BOOTHID
+  FROM BOOTH b
+  WHERE b.GATEID = 9 AND NOT EXISTS (
+    SELECT *
+    FROM TRANSCATIONS t
+    WHERE t.BOOTHID = b.BOOTHID AND t.VEHICLEID = v.VEHICLEID
+  )
+);
+
+
+SELECT c.CUSTOMERID, c.FIRSTNAME, c.LASTNAME
+FROM CUSTOMERS c
+WHERE NOT EXISTS (
+  SELECT g.GATEID
+  FROM GATE g
+  WHERE NOT EXISTS (
+    SELECT *
+    FROM BOOTH b
+    JOIN TRANSCATIONS t ON b.BOOTHID = t.BOOTHID
+    WHERE b.GATEID = g.GATEID AND t.CUSTOMERID = c.CUSTOMERID
+  )
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,165 @@
+SELECT * FROM TRANSCATIONS
+INNER JOIN BOOTH ON TRANSCATIONS.BOOTHID = BOOTH.BOOTHID;
+
+SELECT * FROM GATE
+LEFT JOIN BOOTH ON GATE.GATEID = BOOTH.GATEID;
+
+SELECT * FROM CUSTOMERS AS c1
+RIGHT JOIN CUSTOMERS AS c2 ON c1.CUSTOMERID = c2.CUSTOMERID;
+
+SELECT * FROM GATE
+FULL OUTER JOIN BOOTH ON GATE.GATEID = BOOTH.GATEID
+WHERE GATE.GATEID IS NULL OR BOOTH.GATEID IS NULL;
+
+--UPDATE query to change the vehicle type for a specific vehicle:
+UPDATE VEHICLES
+SET VEHICLETYPE = 'Sedan'
+WHERE VEHICLEID = 1;
+
+--ALTER TABLE query to add a new column to the TRANSACTIONS table:
+ALTER TABLE TRANSCATIONS
+ADD DISCOUNT DECIMAL(5, 2) NULL;
+
+--query to get the total number of transactions per vehicle type:
+SELECT VEHICLETYPE, COUNT(*) AS TotalTransactions
+FROM TRANSCATIONS T
+INNER JOIN VEHICLES V ON T.VEHICLEID = V.VEHICLEID
+GROUP BY VEHICLETYPE;
+
+--ORDER BY query to retrieve transactions in descending order of price:
+SELECT * FROM TRANSCATIONS
+ORDER BY PRICE DESC;
+
+
+
+
+
+
+--Select gates along with the corresponding booth numbers:
+SELECT G.GATEID, G.GATENAME, B.BOOTHNUMBER
+FROM GATE G
+JOIN BOOTH B ON G.GATEID = B.GATEID;
+
+--Select the total number of transactions made at each booth:
+SELECT B.BOOTHNUMBER, COUNT(*) AS TOTAL_TRANSACTIONS
+FROM BOOTH B
+JOIN TRANSCATIONS T ON B.BOOTHID = T.BOOTHID
+GROUP BY B.BOOTHNUMBER;
+
+--Select the average price of transactions made by each vehicle type:
+SELECT V.VEHICLETYPE, AVG(T.PRICE) AS AVERAGE_PRICE
+FROM VEHICLES V
+JOIN TRANSCATIONS T ON V.VEHICLEID = T.VEHICLEID
+GROUP BY V.VEHICLETYPE;
+
+--Update the address of a customer with a specific ID of 204:
+UPDATE CUSTOMERS
+SET CADDRESS = 'Gachi Bowli'
+WHERE CUSTOMERID = 204;
+
+--Insert a new gate into the GATE table:
+INSERT INTO GATE (GATEID, GATENAME)
+VALUES (51, 'PARANORMI Gate');
+
+
+--1)TO Get the license numbers of vehicles that have made transactions:
+SELECT LICENSENO
+FROM VEHICLES
+WHERE VEHICLEID IN (SELECT VEHICLEID FROM TRANSCATIONS);
+
+--2)Get the total number of transactions made at each gate:
+SELECT G.GATENAME, COUNT(*) AS TRANSACTION_COUNT
+FROM GATE G
+INNER JOIN BOOTH B ON G.GATEID = B.GATEID
+INNER JOIN TRANSCATIONS T ON B.BOOTHID = T.BOOTHID
+GROUP BY G.GATENAME;
+
+--3)Get the first and last name of customers who made transactions on a specific date:
+SELECT C.FIRSTNAME, C.LASTNAME
+FROM CUSTOMERS C
+WHERE C.CUSTOMERID IN (SELECT CUSTOMERID FROM TRANSCATIONS WHERE CAST(DATEANDTIME AS DATE) = '2023-01-10');
+
+--4)Get the average price of transactions made by customers with a specific contact number:
+SELECT AVG(T.PRICE) AS AVERAGE_PRICE
+FROM TRANSCATIONS T
+WHERE T.CUSTOMERID IN (SELECT CUSTOMERID FROM CUSTOMERS WHERE CCONTACTNO = 5551234567);
+
+--5)Get the license numbers of vehicles that made transactions at a specific booth:
+SELECT V.LICENSENO
+FROM VEHICLES V
+WHERE V.VEHICLEID IN (SELECT VEHICLEID FROM TRANSCATIONS WHERE BOOTHID = 54);
+
+--6)Retrieve the total number of booths for each gate:
+SELECT G.GATENAME, (
+    SELECT COUNT(*)
+    FROM BOOTH B
+    WHERE B.GATEID = G.GATEID
+) AS NUM_BOOTH
+FROM GATE G;
+
+--7)Retrieve the average price of transactions for each vehicle type:
+SELECT V.VEHICLETYPE, (
+    SELECT AVG(T.PRICE)
+    FROM TRANSCATIONS T
+    WHERE T.VEHICLEID = V.VEHICLEID
+) AS AVG_PRICE
+FROM VEHICLES V;
+
+
+--8)Retrieve the customer details who made the most expensive transaction:
+SELECT C.FIRSTNAME, C.LASTNAME, (
+    SELECT MAX(T.PRICE)
+    FROM TRANSCATIONS T
+    WHERE T.CUSTOMERID = C.CUSTOMERID
+) AS MAX_PRICE
+FROM CUSTOMERS C
+ORDER BY MAX_PRICE DESC;
+
+--9)Retrieve the total number of transactions for each gate:
+SELECT G.GATENAME, (
+    SELECT COUNT(*)
+    FROM TRANSCATIONS T
+    INNER JOIN BOOTH B ON T.BOOTHID = B.BOOTHID
+    WHERE B.GATEID = G.GATEID
+) AS NUM_TRANSACTIONS
+FROM GATE G;
+
+--10)Retrieve the details of customers who have made transactions at the "Alpha Toll Plaza":
+SELECT *FROM CUSTOMERS
+WHERE CUSTOMERID IN (
+    SELECT CUSTOMERID
+    FROM TRANSCATIONS
+    WHERE BOOTHID IN (
+        SELECT BOOTHID
+        FROM BOOTH
+        WHERE GATEID = (
+            SELECT GATEID
+            FROM GATE
+            WHERE GATENAME = 'Alpha Toll Plaza'
+        )
+    )
+);
+
+
+--11)Retrieve the license numbers of vehicles that 
+--have made transactions with a price greater than 200:
+SELECT LICENSENO
+FROM VEHICLES
+WHERE VEHICLEID IN (
+    SELECT VEHICLEID
+    FROM TRANSCATIONS
+    WHERE PRICE > 200
+);
+
+--12)Retrieve the total number of transactions made by each vehicle type:
+SELECT VEHICLETYPE, COUNT(*) AS TotalTransactions
+FROM VEHICLES
+INNER JOIN TRANSCATIONS ON VEHICLES.VEHICLEID = TRANSCATIONS.VEHICLEID
+GROUP BY VEHICLETYPE;
+
+--13)Retrieve the names of gates along with the average price of transactions made at each gate:
+SELECT G.GATENAME, AVG(T.PRICE) AS AveragePrice
+FROM GATE G
+INNER JOIN BOOTH B ON G.GATEID = B.GATEID
+INNER JOIN TRANSCATIONS T ON B.BOOTHID = T.BOOTHID
+GROUP BY G.GATENAME;
